@@ -20,23 +20,48 @@ if errorlevel 1 (
 )
 
 echo.
-echo Loading images (this takes several minutes)...
+echo Loading images (skipped if already present)...
 echo.
 
-echo [1/5] LibreChat...
-docker load -i saved-images\librechat.tar
+docker image inspect registry.librechat.ai/danny-avila/librechat-dev:latest >nul 2>&1
+if errorlevel 1 (
+    echo [1/5] LibreChat  ^(loading...^)
+    docker load -i saved-images\librechat.tar
+) else (
+    echo [1/5] LibreChat  ^(already loaded^)
+)
 
-echo [2/5] MongoDB...
-docker load -i saved-images\mongodb.tar
+docker image inspect mongo:8.0.20 >nul 2>&1
+if errorlevel 1 (
+    echo [2/5] MongoDB  ^(loading...^)
+    docker load -i saved-images\mongodb.tar
+) else (
+    echo [2/5] MongoDB  ^(already loaded^)
+)
 
-echo [3/5] Meilisearch...
-docker load -i saved-images\meilisearch.tar
+docker image inspect getmeili/meilisearch:v1.35.1 >nul 2>&1
+if errorlevel 1 (
+    echo [3/5] Meilisearch  ^(loading...^)
+    docker load -i saved-images\meilisearch.tar
+) else (
+    echo [3/5] Meilisearch  ^(already loaded^)
+)
 
-echo [4/5] VectorDB...
-docker load -i saved-images\vectordb.tar
+docker image inspect pgvector/pgvector:0.8.0-pg15-trixie >nul 2>&1
+if errorlevel 1 (
+    echo [4/5] VectorDB  ^(loading...^)
+    docker load -i saved-images\vectordb.tar
+) else (
+    echo [4/5] VectorDB  ^(already loaded^)
+)
 
-echo [5/5] RAG API...
-docker load -i saved-images\rag_api.tar
+docker image inspect registry.librechat.ai/danny-avila/librechat-rag-api-dev-lite:latest >nul 2>&1
+if errorlevel 1 (
+    echo [5/5] RAG API  ^(loading...^)
+    docker load -i saved-images\rag_api.tar
+) else (
+    echo [5/5] RAG API  ^(already loaded^)
+)
 
 echo.
 echo Starting Petrocil Chat...
