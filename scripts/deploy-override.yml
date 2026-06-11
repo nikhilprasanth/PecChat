@@ -1,0 +1,36 @@
+services:
+  api:
+    pull_policy: never
+    volumes:
+      - type: bind
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
+      - type: bind
+        source: ./assets/logo.png
+        target: /app/client/public/assets/logo.png
+      - type: bind
+        source: ./assets/logo.png
+        target: /app/client/public/assets/logo.svg
+      - type: bind
+        source: ./assets/favicon-32x32.png
+        target: /app/client/public/assets/favicon-32x32.png
+      - type: bind
+        source: ./assets/favicon-16x16.png
+        target: /app/client/public/assets/favicon-16x16.png
+      - type: bind
+        source: ./assets/apple-touch-icon-180x180.png
+        target: /app/client/public/assets/apple-touch-icon-180x180.png
+      - type: bind
+        source: ./assets/petrocil-theme.css
+        target: /app/client/dist/assets/petrocil-theme.css
+      - type: bind
+        source: ./index.html
+        target: /app/client/dist/index.html
+  mongodb:
+    pull_policy: never
+  meilisearch:
+    pull_policy: never
+  vectordb:
+    pull_policy: never
+  rag_api:
+    pull_policy: never

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <meta name="theme-color" content="#171717" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Petrocil Chat - Internal AI Assistant" />
+    <title>Petrocil Chat</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon-180x180.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+    <script>
+      const theme = localStorage.getItem('color-theme');
+      const loadingContainerStyle = document.createElement('style');
+      let backgroundColor;
+
+      if (theme === 'dark') {
+        backgroundColor = '#0d0d0d';
+      } else if (theme === 'light') {
+        backgroundColor = '#ffffff';
+      } else if (theme === 'system') {
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        backgroundColor = prefersDarkScheme ? '#0d0d0d' : '#ffffff';
+      } else {
+        backgroundColor = '#ffffff';
+      }
+
+      loadingContainerStyle.innerHTML = `
+        #loading-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background-color: ${backgroundColor};
+        }
+      `;
+      document.head.appendChild(loadingContainerStyle);
+    </script>
+    <script type="module" crossorigin src="./assets/index.XDkFqPDF.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime.Cyuzqnbw.js">
+    <link rel="modulepreload" crossorigin href="./assets/codemirror-core.DCeggAsc.js">
+    <link rel="modulepreload" crossorigin href="./assets/http-client.D1qXypdn.js">
+    <link rel="modulepreload" crossorigin href="./assets/mermaid.CpNRA-E5.js">
+    <link rel="modulepreload" crossorigin href="./assets/advanced-inputs.BKUrQSBb.js">
+    <link rel="modulepreload" crossorigin href="./assets/animations.Cg77P7xO.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-vtree.Bv__m2K7.js">
+    <link rel="modulepreload" crossorigin href="./assets/query-devtools.D5xPC09P.js">
+    <link rel="modulepreload" crossorigin href="./assets/validation.DV1yC6np.js">
+    <link rel="modulepreload" crossorigin href="./assets/vendor.CNKOG0sV.js">
+    <link rel="modulepreload" crossorigin href="./assets/avatars.CH7OGiPh.js">
+    <link rel="modulepreload" crossorigin href="./assets/headlessui.CLu2eCui.js">
+    <link rel="modulepreload" crossorigin href="./assets/radix-ui.CFzgeTqm.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-interactions.Ggqtj1A5.js">
+    <link rel="modulepreload" crossorigin href="./assets/routing.BSpJ4wvA.js">
+    <link rel="modulepreload" crossorigin href="./assets/tanstack-vendor.CX7nzPJ8.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-processing.BqkdC0TQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/date-utils.7tLVf9uC.js">
+    <link rel="modulepreload" crossorigin href="./assets/framer-motion.CMPOPEls.js">
+    <link rel="modulepreload" crossorigin href="./assets/i18n.D3Gbp8tn.js">
+    <link rel="modulepreload" crossorigin href="./assets/utilities.B8O80BWK.js">
+    <link rel="modulepreload" crossorigin href="./assets/forms.BEEooEiq.js">
+    <link rel="modulepreload" crossorigin href="./assets/virtualization.BjrVeqOo.js">
+    <link rel="modulepreload" crossorigin href="./assets/hooks.4ygDsbNG.js">
+    <link rel="modulepreload" crossorigin href="./assets/sandpack.CEJsOUxH.js">
+    <link rel="modulepreload" crossorigin href="./assets/MyFilesModal.DEtdjUVK.js">
+    <link rel="modulepreload" crossorigin href="./assets/security-ui.BjsCPful.js">
+    <link rel="modulepreload" crossorigin href="./assets/ProjectCreateDialog.CSDMj8ci.js">
+    <link rel="modulepreload" crossorigin href="./assets/forms.CqsvTqcb.js">
+    <link rel="modulepreload" crossorigin href="./assets/polyfills.BnDHDYRr.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-editor.CMtCNxFi.js">
+    <link rel="modulepreload" crossorigin href="./assets/math-katex.BMlcaHSk.js">
+    <link rel="stylesheet" crossorigin href="./assets/math-katex.uZ8_QngQ.css">
+    <link rel="stylesheet" crossorigin href="./assets/index.CDVoJxaQ.css">
+    <link rel="stylesheet" href="./assets/petrocil-theme.css">
+  <link rel="manifest" href="./manifest.webmanifest" crossorigin="use-credentials"><script id="vite-plugin-pwa:register-sw" src="./registerSW.js"></script></head>
+  <body>
+    <div id="root">
+      <div id="loading-container"></div>
+    </div>
+  </body>
+</html>

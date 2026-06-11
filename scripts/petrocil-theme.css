@@ -1,0 +1,78 @@
+/* Petrocil Blue Theme - overrides LibreChat green palette */
+
+/* CSS variable overrides */
+:root {
+  --green-50:  #e8f5fb;
+  --green-100: #c4e6f5;
+  --green-200: #8dd3ee;
+  --green-300: #57bde5;
+  --green-400: #35a8d8;
+  --green-500: #1e94cb;
+  --green-600: #146996;
+  --green-700: #0e5278;
+  --green-800: #093c5c;
+  --green-900: #063052;
+  --green-950: #031e36;
+}
+
+/* Background colours */
+.bg-green-50  { background-color: #e8f5fb !important; }
+.bg-green-500 { background-color: #1e94cb !important; }
+.bg-green-600 { background-color: #146996 !important; }
+.bg-green-700 { background-color: #0e5278 !important; }
+.hover\:bg-green-600:hover { background-color: #146996 !important; }
+.hover\:bg-green-700:hover { background-color: #0e5278 !important; }
+.dark .dark\:bg-green-600  { background-color: #0e5278 !important; }
+.dark .dark\:bg-green-950  { background-color: #031e36 !important; }
+.dark .dark\:hover\:bg-green-700:hover { background-color: #093c5c !important; }
+
+/* Semi-transparent backgrounds */
+.bg-green-50\/50   { background-color: rgba(232,245,251,0.50) !important; }
+.bg-green-500\/10  { background-color: rgba( 30,148,203,0.10) !important; }
+.hover\:bg-green-700\/10:hover { background-color: rgba(14,82,120,0.10) !important; }
+.dark .dark\:bg-green-950\/30 { background-color: rgba(3,30,54,0.30) !important; }
+
+/* Text colours */
+.text-green-500 { color: #1e94cb !important; }
+.text-green-600 { color: #146996 !important; }
+.text-green-700 { color: #0e5278 !important; }
+.text-green-800 { color: #093c5c !important; }
+.hover\:text-green-600:hover { color: #146996 !important; }
+.hover\:text-green-700:hover { color: #0e5278 !important; }
+.focus\:text-green-700:focus { color: #0e5278 !important; }
+.dark .dark\:text-green-100 { color: #c4e6f5 !important; }
+.dark .dark\:text-green-400 { color: #35a8d8 !important; }
+.dark .dark\:text-green-500 { color: #1e94cb !important; }
+.dark .dark\:hover\:text-green-300:hover { color: #57bde5 !important; }
+.dark .dark\:hover\:text-green-400:hover { color: #35a8d8 !important; }
+.dark .dark\:focus\:text-green-400:focus  { color: #35a8d8 !important; }
+
+/* Border colours */
+.border-green-500     { border-color: #1e94cb !important; }
+.border-green-500\/20 { border-color: rgba(30,148,203,0.20) !important; }
+.border-green-600\/40 { border-color: rgba(20,105,150,0.40) !important; }
+.focus\:border-green-500:focus         { border-color: #1e94cb !important; }
+.focus-visible\:border-green-500:focus-visible { border-color: #1e94cb !important; }
+
+/* Ring / focus ring */
+.focus\:ring-green-500:focus        { --tw-ring-color: rgba(30,148,203,0.5) !important; }
+.focus\:ring-green-500\/90:focus    { --tw-ring-color: rgba(30,148,203,0.9) !important; }
+.focus-visible\:ring-green-500:focus-visible { --tw-ring-color: rgba(30,148,203,0.5) !important; }
+
+/* Text-decoration colour */
+.hover\:decoration-green-700:hover  { text-decoration-color: #0e5278 !important; }
+.focus\:decoration-green-700:focus  { text-decoration-color: #0e5278 !important; }
+.dark .dark\:hover\:decoration-green-400:hover { text-decoration-color: #35a8d8 !important; }
+.dark .dark\:focus\:decoration-green-400:focus { text-decoration-color: #35a8d8 !important; }
+
+/* Peer-focus label colours (floating labels in login/register forms) */
+.peer:focus ~ .peer-focus\:text-green-600 { color: #146996 !important; }
+.peer:focus ~ .peer-focus\:text-green-500 { color: #1e94cb !important; }
+.dark .peer:focus ~ .dark\:peer-focus\:text-green-500 { color: #1e94cb !important; }
+
+/* Spinner */
+.text-green-500.animate-spin { color: #1e94cb !important; }
+
+/* Icon accent */
+.text-green-400 { color: #35a8d8 !important; }
+.text-green-600\/50 { color: rgba(20,105,150,0.50) !important; }
