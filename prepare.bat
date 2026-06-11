@@ -23,35 +23,50 @@ if errorlevel 1 (
 set "DEPLOY=%~dp0petrocil-deploy"
 
 echo Preparing output folder...
-if exist "%DEPLOY%" rd /s /q "%DEPLOY%"
-for %%d in (saved-images assets data-node logs uploads images meili_data_v1.35.1 skill) do (
-    mkdir "%DEPLOY%\%%d"
+if not exist "%DEPLOY%" (
+    for %%d in (saved-images assets data-node logs uploads images meili_data_v1.35.1 skill) do (
+        mkdir "%DEPLOY%\%%d"
+    )
 )
 
-echo.
-echo Saving Docker images (this takes several minutes)...
-echo.
+REM ── Check whether images need to be saved ──────────────────────────────────
+set SKIP_IMAGES=true
+if not exist "%DEPLOY%\saved-images\librechat.tar"   set SKIP_IMAGES=false
+if not exist "%DEPLOY%\saved-images\mongodb.tar"     set SKIP_IMAGES=false
+if not exist "%DEPLOY%\saved-images\meilisearch.tar" set SKIP_IMAGES=false
+if not exist "%DEPLOY%\saved-images\vectordb.tar"    set SKIP_IMAGES=false
+if not exist "%DEPLOY%\saved-images\rag_api.tar"     set SKIP_IMAGES=false
 
-echo [1/5] LibreChat...
-docker save registry.librechat.ai/danny-avila/librechat-dev:latest -o "%DEPLOY%\saved-images\librechat.tar"
-if errorlevel 1 goto :err
+if "%SKIP_IMAGES%"=="true" (
+    echo.
+    echo  Docker images already saved  --  skipping ^(delete saved-images\*.tar to force re-save^).
+) else (
+    echo.
+    echo Saving Docker images ^(this takes several minutes on first run^)...
+    echo.
 
-echo [2/5] MongoDB...
-docker save mongo:8.0.20 -o "%DEPLOY%\saved-images\mongodb.tar"
-if errorlevel 1 goto :err
+    echo [1/5] LibreChat...
+    docker save registry.librechat.ai/danny-avila/librechat-dev:latest -o "%DEPLOY%\saved-images\librechat.tar"
+    if errorlevel 1 goto :err
 
-echo [3/5] Meilisearch...
-docker save getmeili/meilisearch:v1.35.1 -o "%DEPLOY%\saved-images\meilisearch.tar"
-if errorlevel 1 goto :err
+    echo [2/5] MongoDB...
+    docker save mongo:8.0.20 -o "%DEPLOY%\saved-images\mongodb.tar"
+    if errorlevel 1 goto :err
 
-echo [4/5] VectorDB...
-docker save pgvector/pgvector:0.8.0-pg15-trixie -o "%DEPLOY%\saved-images\vectordb.tar"
-if errorlevel 1 goto :err
+    echo [3/5] Meilisearch...
+    docker save getmeili/meilisearch:v1.35.1 -o "%DEPLOY%\saved-images\meilisearch.tar"
+    if errorlevel 1 goto :err
 
-echo [5/5] RAG API...
-docker save registry.librechat.ai/danny-avila/librechat-rag-api-dev-lite:latest -o "%DEPLOY%\saved-images\rag_api.tar"
-if errorlevel 1 goto :err
+    echo [4/5] VectorDB...
+    docker save pgvector/pgvector:0.8.0-pg15-trixie -o "%DEPLOY%\saved-images\vectordb.tar"
+    if errorlevel 1 goto :err
 
+    echo [5/5] RAG API...
+    docker save registry.librechat.ai/danny-avila/librechat-rag-api-dev-lite:latest -o "%DEPLOY%\saved-images\rag_api.tar"
+    if errorlevel 1 goto :err
+)
+
+REM ── Always copy config and assets (instant) ───────────────────────────────
 echo.
 echo Copying assets and config...
 copy "%~dp0client\public\assets\logo.png"                      "%DEPLOY%\assets\logo.png"           >nul
@@ -77,6 +92,10 @@ echo     1. Install Docker Desktop
 echo     2. Copy the petrocil-deploy\ folder
 echo     3. Double-click  deploy.bat
 echo     4. Open  http://localhost:9090
+echo.
+echo   To update config/branding only:
+echo     Just run prepare.bat again  ^(skips image save^)
+echo     then copy updated files to the target PC.
 echo  ============================================
 echo.
 pause
